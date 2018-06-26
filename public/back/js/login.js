@@ -48,7 +48,7 @@ $(function(){
   });
 
 
-
+//添加进度条功能
   $("#form").on('success.form.bv', function (e) {
     //阻止表单的默认提交方式
     e.preventDefault();
@@ -75,5 +75,12 @@ $(function(){
         }
         }
     })
+  });
+  //全局变量ajaxStart表示当有ajax开始时触发,ajaxStop表示当ajax结束时候触发
+  $(document).ajaxStart(function(){
+    NProgress.start()
+  });
+  $(document).ajaxStop(function(){
+    NProgress.done()
   });
 })

@@ -7,7 +7,6 @@
   <link rel="stylesheet" href="lib/bootstrap-validator/css/bootstrapValidator.min.css">
   <link rel="stylesheet" href="./lib/nprogress/nprogress.css">
   <link rel="stylesheet" href="css/common.css">
-  <link rel="stylesheet" href="css/index.css">
 </head>
 <body>
 <!--左侧侧栏-->
@@ -18,7 +17,7 @@
   </div>
   <div class="nav">
     <ul>
-      <li><a href="user.html"><i class="glyphicon glyphicon-user"></i>用户管理</a></li>
+      <li><a href="user.html" class="current"><i class="glyphicon glyphicon-user "></i>用户管理</a></li>
       <li>
         <a href="javascript:;" class="category">
           <i class="glyphicon glyphicon-list"></i>
@@ -40,22 +39,54 @@
     <a href="#" class="pull-right"><i class="glyphicon glyphicon-log-out"></i></a>
   </div>
   <div class="container">
+    <!--面包屑-->
     <ol class="breadcrumb">
       <li><a href="index.html">管理系统</a></li>
       <li class="avtive">用户管理</li>
     </ol>
-
-    <!--柱状图-->
-    <div class="bar pull-left"></div>
-    <div class="pie pull-right"></div>
+    <div class="lt_content">
+      <table class="table table-bordered table-hover">
+        <thead>
+          <tr>
+            <th width="10%">序号</th>
+            <th width="20%">用户名</th>
+            <th width="30%">手机号</th>
+            <th width="20%">状态</th>
+            <th width="20%">操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!--我挖了一个坑-->
+        </tbody>
+      </table>
+    </div>
+    <div class="pull-right">
+      <ul id="pagintor"></ul>
+    </div>
   </div>
 </div>
+<script type="text/html" id="tmp">
+{{each rows v i}}
+        <tr>
+          <td>{{i+1}}</td>
+          <td>{{v.username}}</td>
+          <td>{{v.mobile}}</td>
+          <td>{{v.isDelete==1?"正常":"禁用"}}</td>
+          <td data-id= "{{v.id}}" >
+            {{if v.isDelete==1}}
+            <input type="button" class="btn btn-danger" value="禁用">
+            {{/if}}
+            {{if v.isDelete==0}}
+            <input type="button" class="btn btn-success" value="启用">
+            {{/if}}
+          </td>
+        </tr>
+  {{/each}}
 
+
+</script>
 
 <!--模态框-->
-<!--<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">-->
-  <!--Launch demo modal-->
-<!--</button>-->
 <div class="modal fade" id="myModal" tabindex="-1" >
   <div class="modal-dialog">
     <div class="modal-content">
@@ -76,14 +107,35 @@
     </div>
   </div>
 </div>
+<div class="modal fade" id="myModal2" tabindex="-1" >
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" ><span >&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel2">温馨提示</h4>
+      </div>
+      <div class="modal-body">
+        <p class="color">
+          <i class="glyphicon glyphicon-info-sign"></i>
+          你确定要执行此操作吗？
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default " data-dismiss="modal">取消</button>
+        <button type="submit" class="btn btn-primary lt_exit">确定</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <script src="./lib/jquery/jquery.min.js"></script>
 <script src="./lib/bootstrap/js/bootstrap.min.js"></script>
 <script src="./lib/bootstrap-validator/js/bootstrapValidator.min.js"></script>
 <script src="lib/echarts/echarts.min.js"></script>
 <script src="./lib/nprogress/nprogress.js"></script>
+<script src="lib/artTemplate/template-web.js"></script>
+<script src="lib/bootstrap-paginator/bootstrap-paginator.min.js"></script>
 <script src="./js/common.js"></script>
-<script src="./js/index.js"></script>
-
+<script src="./js/user.js"></script>
 </body>
 </html>

@@ -1,0 +1,5 @@
+.bar,.pie {
+  width: 48%;
+  height: 400px;
+  display: inline-block;
+}
