@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script>
+  getSearchObj()
+  function getSearchObj(){
+    var search=location.search
+    //解码
+    search=decodeURI(search)
+    //去除前面问号
+    search=search.slice(1)
+    console.log(search)
+    //通过split方法将获得的字符串切割成数据
+    var arr=search.split("&")
+    console.log(arr)
+    var obj={}
+    arr.forEach(function(v,i){
+      var key=v.split("=")[0]
+      var value= v.split("=")[1]
+      obj[key]=value
+    })
+    return obj
+  }
+
+</script>
+</body>
+</html>
